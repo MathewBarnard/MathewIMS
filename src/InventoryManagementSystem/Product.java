@@ -27,6 +27,11 @@ public class Product {
 		return mID;
 	}
 	
+	public void setName(String name) {
+		
+		mProductName = name;
+	}
+	
 	public String getName() {
 		
 		return mProductName;
@@ -35,6 +40,11 @@ public class Product {
 	public void updateStock(int adjustValue) {
 		
 		mStockLevel += adjustValue;
+	}
+	
+	public void setStock(int stock) {
+		
+		mStockLevel = stock;
 	}
 	
 	public int getStock() {
