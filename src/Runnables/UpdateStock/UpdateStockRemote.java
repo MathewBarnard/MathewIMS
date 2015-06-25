@@ -1,13 +1,8 @@
-package Runnables;
+package Runnables.UpdateStock;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -15,44 +10,15 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
-import InventoryManagementSystem.InventoryManagementSystem;
 import InventoryManagementSystem.Product;
 
-public class UpdateStock implements Runnable {
-	
-	private InventoryManagementSystem ims;
-	InputStream mInputStream;
-	
-	public UpdateStock(InventoryManagementSystem ims) {
+public class UpdateStockRemote extends UpdateStock {
+
+	public UpdateStockRemote() {
 		
-		this.ims = ims;
-		mInputStream = null;
 	}
 	
-	public void run() {
-		
-		int productID = Integer.parseInt(JOptionPane.showInputDialog("Enter the product ID."));
-		
-		/*Object options[] = {"Add", "Remove"};
-		JFrame frame = new JFrame();
-		// Determine if adding or subtracting stock
-		int n = JOptionPane.showOptionDialog(
-		    frame,
-		    "Do you wish to add or remove stock?",
-		    "Updating Stock",
-		    JOptionPane.YES_NO_OPTION,
-		    JOptionPane.QUESTION_MESSAGE,
-		    null,
-		    options,
-		    options[0]
-		    );*/
-		
-		int adjustValue = Integer.parseInt(JOptionPane.showInputDialog("Enter the amount to change the stock by."));
-			
-		/*// The user is removing stock
-		if (n == 1) {
-			adjustValue *= -1;
-		}*/
+	protected void changeStockLevel() {
 		
 		// First me must retrieve the current product to check its stock
 		try {
