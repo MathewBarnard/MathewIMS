@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DatabaseAdapter {
 
@@ -14,7 +15,7 @@ public class DatabaseAdapter {
 	private static String PASS = "Dynamite6464";
 	
 	// Returns a product from the database with a matching ID
-	public static Product FindProductById(int id) {
+	public static Product findProductById(int id) {
 		
 		Connection conn = null;
 		Statement stmt = null;
@@ -46,7 +47,7 @@ public class DatabaseAdapter {
 	}
 	
 	// Updates the entire entry of a product within the database
-	public static void UpdateStockByProduct(Product product) {
+	public static void updateStockByProduct(Product product) {
 		
 		Connection conn = null;
 		Statement stmt = null;
@@ -67,7 +68,7 @@ public class DatabaseAdapter {
 		}
 	}
 	
-	public static int CountEntries() {
+	public static int countEntries() {
 		
 		Connection conn = null;
 		Statement stmt = null;
@@ -96,5 +97,35 @@ public class DatabaseAdapter {
 		}
 		
 		return count;
+	}
+	
+	public static ArrayList<Product> findLowStock() {
+		
+		
+		Connection conn = null;
+		Statement stmt = null;
+		
+		ArrayList<Product> lowStockProducts = new ArrayList<Product>();
+		
+		try {
+			Class.forName(JDBC_DRIVER);
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			
+			stmt = conn.createStatement();
+			String sql = "SELECT ID, Name, Stock FROM Products WHERE Stock < 20";
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			String printOut = "";
+			
+			while(rs.next()) {
+				
+				lowStockProducts.add(new Product(rs.getInt("ID"), rs.getString("Name"), rs.getInt("Stock")));
+			}
+		}
+		catch (Exception e) {
+			
+		}
+		
+		return lowStockProducts;
 	}
 }

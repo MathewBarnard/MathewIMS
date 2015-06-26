@@ -15,7 +15,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
-import InventoryManagementSystem.InventoryManagementSystem;
 import InventoryManagementSystem.Product;
 
 public abstract class UpdateStock implements Runnable {

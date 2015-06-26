@@ -8,6 +8,6 @@ public class StartStockSimulation implements Runnable {
 	
 	public void run() {
 
-		LiveStockSimulator simulator = LiveStockSimulator.getInstance();
+		LiveStockSimulator.getInstance().toggleActive();
 	}
 }

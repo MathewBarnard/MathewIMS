@@ -17,7 +17,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 
-import InventoryManagementSystem.InventoryManagementSystem;
 import InventoryManagementSystem.Product;
 
 public abstract class AddNewProduct implements Runnable {

@@ -39,6 +39,8 @@ public class ImsWindow {
 	private JTextPane textPane;
 	private JMenuBar menuBar;
 	private JMenu menuFile, menuUpdateRecords;
+	
+	private GUIWindow mMainWindow;
 
 	/**
 	 * Launch the application.
@@ -68,6 +70,9 @@ public class ImsWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		mMainWindow = new GUIWindow("Main Window");
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -75,7 +80,8 @@ public class ImsWindow {
 		textPane = new JTextPane();
 		textPane.setEditable(false);
 		frame.getContentPane().add(textPane, BorderLayout.CENTER);
-		textPane.setText("Text");
+		
+		mMainWindow.addComponent("MainOutput", textPane);
 		
 		// Initialise the menu bar
 		menuBar = new JMenuBar();
@@ -92,7 +98,7 @@ public class ImsWindow {
 		menuFile.add(menuRemoveProduct);
 		
 		JMenuItem menuChangeStock = new JMenuItem("Change Stock");
-		menuChangeStock.addActionListener(new BasicButton(new UpdateStockLocal()));
+		menuChangeStock.addActionListener(new BasicButton(new UpdateStockLocal(textPane)));
 		menuFile.add(menuChangeStock);
 		
 		JMenuItem menuStockReport = new JMenuItem("Generate Stock Report");

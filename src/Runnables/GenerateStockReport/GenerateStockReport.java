@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JTextPane;
 
-import InventoryManagementSystem.InventoryManagementSystem;
 import InventoryManagementSystem.Product;
 
 public class GenerateStockReport implements Runnable {
